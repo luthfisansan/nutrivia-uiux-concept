@@ -1,0 +1,1101 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nutrivia — Food Recall &amp; Nutrition Assessment | UI/UX Concept</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --green-900:#1F3B2C;
+    --green-700:#2E6B49;
+    --green-600:#3D8A5E;
+    --green-500:#5AA97A;
+    --green-300:#9BD1B2;
+    --green-100:#E4F3EA;
+    --sand-100:#F6F4EE;
+    --bg:#FAFAF7;
+    --card:#FFFFFF;
+    --line:#EBEAE4;
+    --ink-900:#22271F;
+    --ink-700:#4A5148;
+    --ink-500:#7C8578;
+    --ink-300:#B7BEB1;
+    --amber:#E3A23A;
+    --amber-bg:#FBF1DF;
+    --red:#D4645A;
+    --red-bg:#FBE9E7;
+    --green-status:#3D8A5E;
+    --green-status-bg:#E4F3EA;
+    --radius-lg:24px;
+    --radius-md:16px;
+    --radius-sm:10px;
+    --shadow-card:0 2px 10px rgba(34,39,31,0.05), 0 1px 2px rgba(34,39,31,0.04);
+    --shadow-float:0 12px 28px rgba(34,39,31,0.10);
+    --font-display:'Sora',sans-serif;
+    --font-body:'Inter',sans-serif;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--sand-100);
+    font-family:var(--font-body);
+    color:var(--ink-900);
+  }
+  /* ===== Intro / cover ===== */
+  .cover{
+    padding:64px 24px 40px;
+    background:
+      radial-gradient(circle at 15% 20%, var(--green-300) 0%, transparent 45%),
+      radial-gradient(circle at 85% 0%, var(--green-100) 0%, transparent 40%),
+      var(--green-900);
+    color:#fff;
+    text-align:center;
+  }
+  .cover .eyebrow{
+    font-family:var(--font-body);
+    font-size:12px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--green-300);
+    font-weight:600;
+    margin-bottom:14px;
+  }
+  .cover h1{
+    font-family:var(--font-display);
+    font-size:clamp(28px,5vw,46px);
+    font-weight:700;
+    margin:0 0 14px;
+    line-height:1.15;
+  }
+  .cover p{
+    max-width:640px;
+    margin:0 auto;
+    color:#D9E7DD;
+    font-size:15px;
+    line-height:1.6;
+  }
+  .cover .tags{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:8px;
+    margin-top:24px;
+  }
+  .cover .tags span{
+    border:1px solid rgba(255,255,255,0.25);
+    padding:6px 14px;
+    border-radius:100px;
+    font-size:12px;
+    color:#EAF3ED;
+  }
+
+  /* ===== Nav rail ===== */
+  .navrail{
+    position:sticky;
+    top:0;
+    z-index:50;
+    background:rgba(250,250,247,0.92);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+    padding:12px 20px;
+    display:flex;
+    gap:8px;
+    overflow-x:auto;
+  }
+  .navrail a{
+    flex:0 0 auto;
+    text-decoration:none;
+    font-size:12px;
+    font-weight:600;
+    color:var(--ink-700);
+    background:#fff;
+    border:1px solid var(--line);
+    padding:8px 14px;
+    border-radius:100px;
+    white-space:nowrap;
+  }
+  .navrail a:hover{ border-color:var(--green-500); color:var(--green-700); }
+
+  /* ===== Section wrapper ===== */
+  .section{
+    padding:56px 24px 20px;
+    max-width:1200px;
+    margin:0 auto;
+  }
+  .section-head{
+    margin-bottom:26px;
+    max-width:720px;
+  }
+  .section-head .num{
+    font-family:var(--font-display);
+    font-size:12px;
+    font-weight:700;
+    color:var(--green-600);
+    letter-spacing:.08em;
+    margin-bottom:6px;
+  }
+  .section-head h2{
+    font-family:var(--font-display);
+    font-size:24px;
+    font-weight:700;
+    margin:0 0 8px;
+    color:var(--ink-900);
+  }
+  .section-head p{
+    font-size:13.5px;
+    color:var(--ink-500);
+    line-height:1.6;
+    margin:0;
+  }
+  .frames{
+    display:flex;
+    flex-wrap:wrap;
+    gap:28px;
+    align-items:flex-start;
+  }
+
+  /* ===== Phone frame ===== */
+  .phone{
+    width:320px;
+    background:#101610;
+    border-radius:38px;
+    padding:10px;
+    box-shadow:var(--shadow-float);
+    flex:0 0 auto;
+  }
+  .phone .notch{
+    height:18px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+  .phone .notch::before{
+    content:'';
+    width:80px;
+    height:6px;
+    border-radius:10px;
+    background:#232823;
+  }
+  .screen{
+    background:var(--bg);
+    border-radius:28px;
+    height:650px;
+    overflow:hidden;
+    position:relative;
+    display:flex;
+    flex-direction:column;
+  }
+  .caption{
+    text-align:center;
+    font-size:11.5px;
+    color:var(--ink-500);
+    margin-top:10px;
+    font-weight:500;
+  }
+
+  /* ===== In-screen shared components ===== */
+  .status-bar{
+    display:flex;
+    justify-content:space-between;
+    padding:14px 20px 4px;
+    font-size:11px;
+    color:var(--ink-700);
+    font-weight:600;
+  }
+  .scr-content{
+    flex:1;
+    overflow:hidden;
+    padding:14px 18px 18px;
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+  }
+  .app-topbar{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+  }
+  .greet-sm{ font-size:11px; color:var(--ink-500); font-weight:500;}
+  .greet-lg{ font-size:17px; font-weight:700; font-family:var(--font-display); color:var(--ink-900);}
+  .avatar{
+    width:36px;height:36px;border-radius:50%;
+    background:linear-gradient(135deg,var(--green-500),var(--green-700));
+    display:flex;align-items:center;justify-content:center;
+    color:#fff;font-size:13px;font-weight:700;font-family:var(--font-display);
+  }
+  .card{
+    background:var(--card);
+    border-radius:var(--radius-md);
+    border:1px solid var(--line);
+    padding:16px;
+    box-shadow:var(--shadow-card);
+  }
+  .card-title{ font-size:13px; font-weight:700; color:var(--ink-900); margin:0 0 6px;}
+  .card-sub{ font-size:11.5px; color:var(--ink-500); margin:0; line-height:1.5;}
+  .btn{
+    display:inline-flex;align-items:center;justify-content:center;gap:6px;
+    border-radius:100px;
+    font-family:var(--font-body);
+    font-weight:700;
+    font-size:12.5px;
+    padding:12px 18px;
+    border:none;
+    cursor:pointer;
+  }
+  .btn-primary{ background:var(--green-600); color:#fff; }
+  .btn-secondary{ background:var(--green-100); color:var(--green-700); }
+  .btn-ghost{ background:transparent; color:var(--ink-700); border:1px solid var(--line);}
+  .btn-block{ width:100%; }
+  .pill{
+    display:inline-flex;align-items:center;gap:5px;
+    font-size:10.5px;font-weight:700;
+    padding:4px 10px;border-radius:100px;
+  }
+  .pill-green{ background:var(--green-status-bg); color:var(--green-status); }
+  .pill-amber{ background:var(--amber-bg); color:var(--amber); }
+  .pill-red{ background:var(--red-bg); color:var(--red); }
+  .dot{ width:7px;height:7px;border-radius:50%; }
+  .dot-green{ background:var(--green-status); }
+  .dot-amber{ background:var(--amber); }
+  .dot-red{ background:var(--red); }
+  .progressbar{
+    height:8px;border-radius:100px;background:var(--line);overflow:hidden;
+  }
+  .progressbar > div{ height:100%; border-radius:100px; background:linear-gradient(90deg,var(--green-500),var(--green-700)); }
+  .bottomnav{
+    display:flex;
+    justify-content:space-around;
+    padding:10px 8px 14px;
+    background:#fff;
+    border-top:1px solid var(--line);
+    margin-top:auto;
+  }
+  .bottomnav .item{
+    display:flex;flex-direction:column;align-items:center;gap:4px;
+    font-size:9.5px;color:var(--ink-300);font-weight:600;
+  }
+  .bottomnav .item.active{ color:var(--green-600); }
+  .navicon{ font-size:16px; line-height:1;}
+  .input{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:var(--radius-sm);
+    padding:12px 14px;
+    font-size:12.5px;
+    color:var(--ink-500);
+    display:flex;align-items:center;gap:8px;
+  }
+  .chip{
+    padding:8px 14px;border-radius:100px;font-size:11.5px;font-weight:600;
+    border:1px solid var(--line); background:#fff; color:var(--ink-700);
+  }
+  .chip.selected{ background:var(--green-600); border-color:var(--green-600); color:#fff;}
+  .food-row{
+    display:flex;align-items:center;gap:10px;
+    font-size:12px;color:var(--ink-900);font-weight:600;
+  }
+  .food-icon{
+    width:30px;height:30px;border-radius:9px;background:var(--green-100);
+    display:flex;align-items:center;justify-content:center;font-size:15px;flex:0 0 auto;
+  }
+  hr.line{ border:none; border-top:1px solid var(--line); margin:0;}
+  .timeline-dot{
+    width:10px;height:10px;border-radius:50%;background:var(--green-500);
+    border:2px solid #fff; box-shadow:0 0 0 2px var(--green-500); flex:0 0 auto;
+  }
+  table.rule-table{ width:100%; border-collapse:collapse; font-size:10.5px;}
+  table.rule-table th{ text-align:left; color:var(--ink-500); font-weight:600; padding:6px 4px; border-bottom:1px solid var(--line);}
+  table.rule-table td{ padding:7px 4px; border-bottom:1px solid var(--line); color:var(--ink-900);}
+  .badge-num{
+    width:22px;height:22px;border-radius:7px;background:var(--green-900);color:#fff;
+    display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;font-family:var(--font-display);flex:0 0 auto;
+  }
+  .kpi{
+    flex:1;background:var(--card);border:1px solid var(--line);border-radius:var(--radius-sm);
+    padding:12px;text-align:left;
+  }
+  .kpi .v{ font-family:var(--font-display); font-size:19px; font-weight:700; color:var(--ink-900);}
+  .kpi .l{ font-size:10px; color:var(--ink-500); font-weight:600; margin-top:2px;}
+  .scroll-y{ overflow-y:auto; }
+  .scroll-y::-webkit-scrollbar{ display:none; }
+  footer.credit{
+    text-align:center;
+    padding:40px 20px 60px;
+    color:var(--ink-500);
+    font-size:12px;
+  }
+</style>
+</head>
+<body>
+
+<div class="cover">
+  <div class="eyebrow">UI/UX Product Concept</div>
+  <h1>Nutrivia<br>Food Recall 24 Jam &amp; Nutrition Assessment</h1>
+  <p>Konsep desain high-fidelity untuk aplikasi pencatatan makan mahasiswa dan sistem assessment gizi berbasis rule/knowledge dari ahli gizi — bukan AI/ML. Mahasiswa mencatat lewat ukuran rumah tangga, sistem memberi insight awal, ahli gizi memvalidasi dan memutuskan rekomendasi akhir.</p>
+  <div class="tags">
+    <span>Rule-based, bukan AI/ML</span>
+    <span>Mobile-first</span>
+    <span>Soft green · clinical-friendly</span>
+    <span>Ahli gizi = pengambil keputusan akhir</span>
+  </div>
+</div>
+
+<div class="navrail" id="navrail">
+  <a href="#s1">01 Login</a>
+  <a href="#s2">02 Dashboard</a>
+  <a href="#s3">03 Timeline Recall</a>
+  <a href="#s4">04 Add Food</a>
+  <a href="#s5">05 Porsi</a>
+  <a href="#s6">06 Summary</a>
+  <a href="#s7">07 Assessment</a>
+  <a href="#s8">08 Insights</a>
+  <a href="#s9">09 Recommendation</a>
+  <a href="#s10">10 History</a>
+  <a href="#s11">11 Dashboard Ahli Gizi</a>
+  <a href="#s12">12 Detail Mahasiswa</a>
+  <a href="#s13">13 Expert Review</a>
+  <a href="#s14">14 Knowledge Base</a>
+  <a href="#s15">15 Monitoring</a>
+</div>
+
+<!-- ============ 01 LOGIN ============ -->
+<section class="section" id="s1">
+  <div class="section-head">
+    <div class="num">01 / Mahasiswa</div>
+    <h2>Login &amp; Register</h2>
+    <p>Onboarding singkat, tidak terasa seperti form medis. Ilustrasi hangat, copy personal.</p>
+  </div>
+  <div class="frames">
+    <div class="phone"><div class="notch"></div><div class="screen">
+      <div class="status-bar"><span>9:41</span><span>●●●  🔋</span></div>
+      <div class="scr-content" style="justify-content:center;align-items:center;text-align:center;gap:22px;padding-top:10px;">
+        <div style="width:100%;height:190px;border-radius:22px;background:linear-gradient(160deg,var(--green-100),var(--sand-100));display:flex;align-items:center;justify-content:center;font-size:58px;">🥗</div>
+        <div>
+          <div style="font-family:var(--font-display);font-size:22px;font-weight:800;color:var(--ink-900);">Nutrivia</div>
+          <div style="font-size:12.5px;color:var(--ink-500);margin-top:6px;line-height:1.5;">Catat makan harianmu, kenali polanya,<br>dapat masukan dari ahli gizi.</div>
+        </div>
+        <div style="width:100%;display:flex;flex-direction:column;gap:10px;">
+          <div class="input">📧 &nbsp; Email kampus</div>
+          <div class="input">🔒 &nbsp; Kata sandi</div>
+        </div>
+        <button class="btn btn-primary btn-block">Masuk</button>
+        <div style="font-size:11.5px;color:var(--ink-500);">Belum punya akun? <b style="color:var(--green-700);">Daftar</b></div>
+        <div style="font-size:10px;color:var(--ink-300);max-width:220px;">Untuk mahasiswa program studi Gizi — hasil dapat direview ahli gizi pembimbing.</div>
+      </div>
+    </div></div>
+    <div class="caption">Login — Mahasiswa</div>
+  </div>
+</section>
+
+<!-- ============ 02 DASHBOARD ============ -->
+<section class="section" id="s2">
+  <div class="section-head">
+    <div class="num">02 / Mahasiswa</div>
+    <h2>Student Dashboard</h2>
+    <p>Greeting, status food recall hari ini, insight terbaru, dan ringkasan pola makan — dalam satu layar tanpa terasa penuh.</p>
+  </div>
+  <div class="frames">
+    <div class="phone"><div class="notch"></div><div class="screen">
+      <div class="status-bar"><span>9:41</span><span>●●●  🔋</span></div>
+      <div class="scr-content scroll-y">
+        <div class="app-topbar">
+          <div><div class="greet-sm">Selamat pagi 👋</div><div class="greet-lg">Andi Pratama</div></div>
+          <div class="avatar">AP</div>
+        </div>
+        <div class="card" style="background:linear-gradient(135deg,var(--green-700),var(--green-900));border:none;">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;">
+            <div>
+              <div style="color:#CFE7D9;font-size:11px;font-weight:600;">Food recall hari ini</div>
+              <div style="color:#fff;font-size:15px;font-weight:700;font-family:var(--font-display);margin-top:2px;">Belum selesai · 3 dari 8 waktu</div>
+            </div>
+            <span class="pill" style="background:rgba(255,255,255,0.18);color:#fff;">38%</span>
+          </div>
+          <div class="progressbar" style="background:rgba(255,255,255,0.2);margin-top:12px;"><div style="width:38%;background:#fff;"></div></div>
+          <button class="btn btn-block" style="background:#fff;color:var(--green-700);margin-top:12px;">Lanjutkan Food Recall →</button>
+        </div>
+        <div class="card">
+          <div style="display:flex;justify-content:space-between;align-items:center;">
+            <div class="card-title">💡 Insight terbaru</div>
+            <span class="pill pill-amber">Perlu perhatian</span>
+          </div>
+          <p class="card-sub">Kamu melewatkan sarapan pada 3 dari 5 pencatatan terakhir.</p>
+        </div>
+        <div class="card">
+          <div class="card-title">🎯 Rekomendasi utama</div>
+          <p class="card-sub">Coba siapkan sarapan sederhana sebelum beraktivitas pagi.</p>
+          <div style="display:flex;gap:6px;margin-top:8px;">
+            <span class="chip selected" style="padding:6px 12px;font-size:10.5px;">Lihat rekomendasi</span>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-title">Ringkasan pola makan minggu ini</div>
+          <div style="display:flex;gap:8px;margin-top:8px;">
+            <div class="kpi"><div class="v">5/7</div><div class="l">Sarapan</div></div>
+            <div class="kpi"><div class="v">2/7</div><div class="l">Cukup sayur</div></div>
+            <div class="kpi"><div class="v">4x</div><div class="l">Minuman manis</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="bottomnav">
+        <div class="item active"><div class="navicon">🏠</div>Home</div>
+        <div class="item"><div class="navicon">📝</div>Recall</div>
+        <div class="item"><div class="navicon">💡</div>Insight</div>
+        <div class="item"><div class="navicon">🎯</div>Rekomendasi</div>
+        <div class="item"><div class="navicon">👤</div>Profil</div>
+      </div>
+    </div></div>
+    <div class="caption">Dashboard — Mahasiswa</div>
+  </div>
+</section>
+
+<!-- ============ 03 FOOD RECALL TIMELINE ============ -->
+<section class="section" id="s3">
+  <div class="section-head">
+    <div class="num">03 / Mahasiswa</div>
+    <h2>Food Recall 24 Jam — Timeline</h2>
+    <p>Diisi seperti mencatat aktivitas harian, bukan form medis. Slot kosong punya opsi "belum makan / lewatkan / tidak ingat", bukan asumsi otomatis.</p>
+  </div>
+  <div class="frames">
+    <div class="phone"><div class="notch"></div><div class="screen">
+      <div class="status-bar"><span>9:41</span><span>●●●  🔋</span></div>
+      <div class="scr-content scroll-y">
+        <div class="app-topbar">
+          <div class="greet-lg">Food Recall Hari Ini</div>
+          <span class="pill pill-green">3/8 terisi</span>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:0;">
+
+          <div style="display:flex;gap:12px;">
+            <div style="display:flex;flex-direction:column;align-items:center;">
+              <div class="timeline-dot" style="background:var(--green-600);box-shadow:0 0 0 2px var(--green-600);"></div>
+              <div style="width:2px;flex:1;background:var(--line);"></div>
+            </div>
+            <div style="padding-bottom:14px;flex:1;">
+              <div style="font-size:11px;color:var(--ink-500);font-weight:600;">08:00 — Sarapan</div>
+              <div class="card" style="margin-top:6px;padding:10px 12px;">
+                <div class="food-row"><div class="food-icon">🍚</div>Nasi putih · 1 centong</div>
+                <hr class="line" style="margin:8px 0;">
+                <div class="food-row"><div class="food-icon">🍗</div>Ayam goreng · 1 potong</div>
+              </div>
+            </div>
+          </div>
+
+          <div style="display:flex;gap:12px;">
+            <div style="display:flex;flex-direction:column;align-items:center;">
+              <div class="timeline-dot" style="background:var(--green-600);box-shadow:0 0 0 2px var(--green-600);"></div>
+              <div style="width:2px;flex:1;background:var(--line);"></div>
+            </div>
+            <div style="padding-bottom:14px;flex:1;">
+              <div style="font-size:11px;color:var(--ink-500);font-weight:600;">12:30 — Makan siang</div>
+              <div class="card" style="margin-top:6px;padding:10px 12px;">
+                <div class="food-row"><div class="food-icon">🍚</div>Nasi putih · 1 centong</div>
+                <hr class="line" style="margin:8px 0;">
+                <div class="food-row"><div class="food-icon">🥬</div>Sayur bayam · 1 mangkuk kecil</div>
+              </div>
+            </div>
+          </div>
+
+          <div style="display:flex;gap:12px;">
+            <div style="display:flex;flex-direction:column;align-items:center;">
+              <div class="timeline-dot" style="background:var(--ink-300);box-shadow:0 0 0 2px var(--line);"></div>
+              <div style="width:2px;flex:1;background:var(--line);"></div>
+            </div>
+            <div style="padding-bottom:14px;flex:1;">
+              <div style="font-size:11px;color:var(--ink-500);font-weight:600;">16:00 — Snack</div>
+              <button class="btn btn-secondary btn-block" style="justify-content:flex-start;padding:10px 12px;font-size:12px;">＋ Tambah makanan</button>
+            </div>
+          </div>
+
+          <div style="display:flex;gap:12px;">
+            <div style="display:flex;flex-direction:column;align-items:center;">
+              <div class="timeline-dot" style="background:var(--ink-300);box-shadow:0 0 0 2px var(--line);"></div>
+            </div>
+            <div style="flex:1;">
+              <div style="font-size:11px;color:var(--ink-500);font-weight:600;">19:30 — Makan malam</div>
+              <div style="display:flex;gap:6px;margin-top:6px;flex-wrap:wrap;">
+                <span class="chip">Belum makan</span>
+                <span class="chip">Lewatkan waktu ini</span>
+                <span class="chip">Tidak ingat</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="bottomnav" style="justify-content:center;">
+        <button class="btn btn-primary" style="width:90%;">Selesai &amp; Lihat Ringkasan</button>
+      </div>
+    </div></div>
+    <div class="caption">Food Recall — Timeline 24 Jam</div>
+  </div>
+</section>
+
+<!-- ============ 04 ADD FOOD ============ -->
+<section class="section" id="s4">
+  <div class="section-head">
+    <div class="num">04 / Mahasiswa</div>
+    <h2>Add Food</h2>
+    <p>Pencarian cepat dengan kategori, ditampilkan sebagai kartu makanan yang familiar — bukan daftar database gizi.</p>
+  </div>
+  <div class="frames">
+    <div class="phone"><div class="notch"></div><div class="screen">
+      <div class="status-bar"><span>9:41</span><span>●●●  🔋</span></div>
+      <div class="scr-content">
+        <div class="app-topbar">
+          <span style="font-size:18px;">←</span>
+          <div class="greet-lg" style="font-size:15px;">Tambah Makanan</div>
+          <span style="width:18px;"></span>
+        </div>
+        <div class="input">🔍 &nbsp; Cari makanan...</div>
+        <div style="display:flex;gap:6px;overflow-x:auto;">
+          <span class="chip selected">Semua</span>
+          <span class="chip">Utama</span>
+          <span class="chip">Lauk</span>
+          <span class="chip">Sayur</span>
+          <span class="chip">Buah</span>
+          <span class="chip">Snack</span>
+          <span class="chip">Minuman</span>
+        </div>
+        <div class="scroll-y" style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+          <div class="card" style="text-align:center;padding:14px 8px;">
+            <div style="font-size:26px;">🍚</div>
+            <div style="font-size:11.5px;font-weight:700;margin-top:6px;">Nasi Putih</div>
+          </div>
+          <div class="card" style="text-align:center;padding:14px 8px;">
+            <div style="font-size:26px;">🍗</div>
+            <div style="font-size:11.5px;font-weight:700;margin-top:6px;">Ayam Goreng</div>
+          </div>
+          <div class="card" style="text-align:center;padding:14px 8px;border:1.5px solid var(--green-500);">
+            <div style="font-size:26px;">🥚</div>
+            <div style="font-size:11.5px;font-weight:700;margin-top:6px;">Telur</div>
+          </div>
+          <div class="card" style="text-align:center;padding:14px 8px;">
+            <div style="font-size:26px;">🍌</div>
+            <div style="font-size:11.5px;font-weight:700;margin-top:6px;">Pisang</div>
+          </div>
+          <div class="card" style="text-align:center;padding:14px 8px;">
+            <div style="font-size:26px;">🍩</div>
+            <div style="font-size:11.5px;font-weight:700;margin-top:6px;">Donat</div>
+          </div>
+          <div class="card" style="text-align:center;padding:14px 8px;">
+            <div style="font-size:26px;">🍜</div>
+            <div style="font-size:11.5px;font-weight:700;margin-top:6px;">Bakso</div>
+          </div>
+        </div>
+      </div>
+    </div></div>
+    <div class="caption">Add Food — Pencarian &amp; Kategori</div>
+  </div>
+</section>
+
+<!-- ============ 05 PORTION SELECTION ============ -->
+<section class="section" id="s5">
+  <div class="section-head">
+    <div class="num">05 / Mahasiswa</div>
+    <h2>Portion Selection</h2>
+    <p>Ukuran rumah tangga sebagai pilihan utama. Gram tidak ditampilkan sebagai informasi utama ke mahasiswa.</p>
+  </div>
+  <div class="frames">
+    <div class="phone"><div class="notch"></div><div class="screen">
+      <div class="status-bar"><span>9:41</span><span>●●●  🔋</span></div>
+      <div class="scr-content" style="justify-content:flex-end;">
+        <div style="flex:1;display:flex;align-items:center;justify-content:center;">
+          <div style="font-size:88px;">🍚</div>
+        </div>
+        <div class="card" style="border-radius:24px 24px 0 0;margin:0 -18px -18px;box-shadow:none;border-bottom:none;padding:22px 20px 24px;">
+          <div style="font-family:var(--font-display);font-size:17px;font-weight:700;">Nasi Putih</div>
+          <div style="font-size:12px;color:var(--ink-500);margin:4px 0 16px;">Seberapa banyak yang kamu makan?</div>
+          <div style="display:flex;flex-direction:column;gap:8px;">
+            <div class="chip" style="text-align:center;padding:13px;">½ centong</div>
+            <div class="chip selected" style="text-align:center;padding:13px;">1 centong</div>
+            <div class="chip" style="text-align:center;padding:13px;">1½ centong</div>
+            <div class="chip" style="text-align:center;padding:13px;">2 centong</div>
+          </div>
+          <button class="btn btn-primary btn-block" style="margin-top:16px;">Tambahkan</button>
+        </div>
+      </div>
+    </div></div>
+    <div class="caption">Portion — Nasi (household unit)</div>
+  </div>
+  <div class="frames" style="margin-top:22px;">
+    <div class="phone"><div class="notch"></div><div class="screen">
+      <div class="status-bar"><span>9:41</span><span>●●●  🔋</span></div>
+      <div class="scr-content" style="justify-content:flex-end;">
+        <div style="flex:1;display:flex;align-items:center;justify-content:center;">
+          <div style="font-size:88px;">🍜</div>
+        </div>
+        <div class="card" style="border-radius:24px 24px 0 0;margin:0 -18px -18px;box-shadow:none;border-bottom:none;padding:22px 20px 24px;">
+          <div style="font-family:var(--font-display);font-size:17px;font-weight:700;">Bakso</div>
+          <div style="font-size:12px;color:var(--ink-500);margin:4px 0 16px;">Seberapa banyak yang kamu makan?</div>
+          <div style="display:flex;gap:8px;">
+            <div class="chip" style="flex:1;text-align:center;padding:13px;">½ mangkuk</div>
+            <div class="chip selected" style="flex:1;text-align:center;padding:13px;">1 mangkuk</div>
+            <div class="chip" style="flex:1;text-align:center;padding:13px;">1½ mangkuk</div>
+          </div>
+          <button class="btn btn-primary btn-block" style="margin-top:16px;">Tambahkan</button>
+        </div>
+      </div>
+    </div></div>
+    <div class="caption">Portion — Bakso (household unit)</div>
+  </div>
+</section>
+
+<!-- ============ 06 SUMMARY ============ -->
+<section class="section" id="s6">
+  <div class="section-head">
+    <div class="num">06 / Mahasiswa</div>
+    <h2>Food Recall Summary</h2>
+    <p>Ringkasan hasil pencatatan 24 jam dengan estimasi zat gizi dan disclaimer transparan.</p>
+  </div>
+  <div class="frames">
+    <div class="phone"><div class="notch"></div><div class="screen">
+      <div class="status-bar"><span>9:41</span><span>●●●  🔋</span></div>
+      <div class="scr-content scroll-y">
+        <div class="greet-lg">Ringkasan Hari Ini</div>
+        <div style="display:flex;gap:8px;">
+          <div class="kpi"><div class="v">8</div><div class="l">Waktu makan</div></div>
+          <div class="kpi"><div class="v">14</div><div class="l">Jumlah makanan</div></div>
+        </div>
+        <div class="card">
+          <div class="card-title">Estimasi Zat Gizi</div>
+          <div style="display:flex;flex-direction:column;gap:10px;margin-top:8px;">
+            <div>
+              <div style="display:flex;justify-content:space-between;font-size:11.5px;font-weight:600;"><span>Energi</span><span>1.680 kkal</span></div>
+              <div class="progressbar" style="margin-top:5px;"><div style="width:78%;"></div></div>
+            </div>
+            <div>
+              <div style="display:flex;justify-content:space-between;font-size:11.5px;font-weight:600;"><span>Protein</span><span>54 g</span></div>
+              <div class="progressbar" style="margin-top:5px;"><div style="width:68%;"></div></div>
+            </div>
+            <div>
+              <div style="display:flex;justify-content:space-between;font-size:11.5px;font-weight:600;"><span>Lemak</span><span>46 g</span></div>
+              <div class="progressbar" style="margin-top:5px;"><div style="width:60%;"></div></div>
+            </div>
+            <div>
+              <div style="display:flex;justify-content:space-between;font-size:11.5px;font-weight:600;"><span>Karbohidrat</span><span>228 g</span></div>
+              <div class="progressbar" style="margin-top:5px;"><div style="width:72%;"></div></div>
+            </div>
+          </div>
+        </div>
+        <div style="font-size:10px;color:var(--ink-300);line-height:1.5;padding:0 2px;">ⓘ Nilai merupakan estimasi berdasarkan makanan dan porsi yang kamu masukkan, bukan pengukuran laboratorium.</div>
+        <button class="btn btn-primary btn-block">Lihat Nutrition Assessment →</button>
+      </div>
+    </div></div>
+    <div class="caption">Food Recall Summary</div>
+  </div>
+</section>
+
+<!-- ============ 07 NUTRITION ASSESSMENT ============ -->
+<section class="section" id="s7">
+  <div class="section-head">
+    <div class="num">07 / Mahasiswa</div>
+    <h2>Nutrition Assessment</h2>
+    <p>Bahasa yang mudah dipahami, warna status jelas, tidak terlihat seperti hasil diagnosis medis.</p>
+  </div>
+  <div class="frames">
+    <div class="phone"><div class="notch"></div><div class="screen">
+      <div class="status-bar"><span>9:41</span><span>●●●  🔋</span></div>
+      <div class="scr-content scroll-y">
+        <div class="greet-lg">Nutrition Assessment</div>
+        <div class="card-sub">Berdasarkan pencatatan 5 hari terakhir</div>
+
+        <div class="card" style="display:flex;justify-content:space-between;align-items:center;">
+          <div><div class="card-title">Status antropometri</div><div class="card-sub">Berat &amp; tinggi badan seimbang</div></div>
+          <span class="pill pill-green"><span class="dot dot-green"></span>Normal</span>
+        </div>
+        <div class="card" style="display:flex;justify-content:space-between;align-items:center;">
+          <div><div class="card-title">Asupan energi</div><div class="card-sub">Sedikit di bawah kebutuhan harian</div></div>
+          <span class="pill pill-amber"><span class="dot dot-amber"></span>Perhatian</span>
+        </div>
+        <div class="card" style="display:flex;justify-content:space-between;align-items:center;">
+          <div><div class="card-title">Konsumsi sayur</div><div class="card-sub">Jarang muncul dalam pencatatan</div></div>
+          <span class="pill pill-red"><span class="dot dot-red"></span>Rendah</span>
+        </div>
+        <div class="card" style="display:flex;justify-content:space-between;align-items:center;">
+          <div><div class="card-title">Minuman berpemanis</div><div class="card-sub">Muncul 4x dalam seminggu</div></div>
+          <span class="pill pill-amber"><span class="dot dot-amber"></span>Cukup sering</span>
+        </div>
+        <div style="font-size:10px;color:var(--ink-300);">ⓘ Ini bukan diagnosis medis — hasil awal dari sistem yang akan direview ahli gizi.</div>
+      </div>
+    </div></div>
+    <div class="caption">Nutrition Assessment</div>
+  </div>
+</section>
+
+<!-- ============ 08 INSIGHTS ============ -->
+<section class="section" id="s8">
+  <div class="section-head">
+    <div class="num">08 / Mahasiswa</div>
+    <h2>Nutrition Insights</h2>
+    <p>Temuan pola makan disampaikan sebagai cerita singkat, bukan angka statistik mentah.</p>
+  </div>
+  <div class="frames">
+    <div class="phone"><div class="notch"></div><div class="screen">
+      <div class="status-bar"><span>9:41</span><span>●●●  🔋</span></div>
+      <div class="scr-content scroll-y">
+        <div class="greet-lg">Your Nutrition Insights</div>
+        <div class="card-sub" style="font-weight:600;color:var(--ink-700);">3 hal yang kami temukan minggu ini</div>
+
+        <div class="card" style="display:flex;gap:12px;">
+          <div class="badge-num">01</div>
+          <div>
+            <div class="card-title">🍳 Sarapan</div>
+            <p class="card-sub">Kamu melewatkan sarapan pada 3 dari 5 hari pencatatan.</p>
+          </div>
+        </div>
+        <div class="card" style="display:flex;gap:12px;">
+          <div class="badge-num">02</div>
+          <div>
+            <div class="card-title">🥬 Sayur</div>
+            <p class="card-sub">Konsumsi sayur masih belum konsisten setiap hari.</p>
+          </div>
+        </div>
+        <div class="card" style="display:flex;gap:12px;">
+          <div class="badge-num">03</div>
+          <div>
+            <div class="card-title">🧋 Minuman manis</div>
+            <p class="card-sub">Minuman berpemanis cukup sering muncul dalam food recall.</p>
+          </div>
+        </div>
+        <button class="btn btn-secondary btn-block">Lihat rekomendasi untukmu →</button>
+      </div>
+      <div class="bottomnav">
+        <div class="item"><div class="navicon">🏠</div>Home</div>
+        <div class="item"><div class="navicon">📝</div>Recall</div>
+        <div class="item active"><div class="navicon">💡</div>Insight</div>
+        <div class="item"><div class="navicon">🎯</div>Rekomendasi</div>
+        <div class="item"><div class="navicon">👤</div>Profil</div>
+      </div>
+    </div></div>
+    <div class="caption">Nutrition Insights</div>
+  </div>
+</section>
+
+<!-- ============ 09 RECOMMENDATION ============ -->
+<section class="section" id="s9">
+  <div class="section-head">
+    <div class="num">09 / Mahasiswa</div>
+    <h2>Recommendation</h2>
+    <p>Rekomendasi actionable lengkap dengan alasan, tindakan sederhana, dan target progres mingguan.</p>
+  </div>
+  <div class="frames">
+    <div class="phone"><div class="notch"></div><div class="screen">
+      <div class="status-bar"><span>9:41</span><span>●●●  🔋</span></div>
+      <div class="scr-content scroll-y">
+        <div class="greet-lg">🎯 Prioritas Minggu Ini</div>
+
+        <div class="card">
+          <div style="display:flex;justify-content:space-between;">
+            <div class="card-title">1. Sarapan lebih teratur</div>
+            <span class="pill pill-amber">Prioritas</span>
+          </div>
+          <p class="card-sub"><b>Kenapa:</b> Sarapan terlewat 3 dari 5 hari terakhir.</p>
+          <p class="card-sub"><b>Tindakan:</b> Siapkan menu sarapan singkat, contoh roti + telur.</p>
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-top:8px;">
+            <span style="font-size:11px;font-weight:600;color:var(--ink-700);">Target: sarapan 5 hari</span>
+            <span class="pill pill-green">3/5</span>
+          </div>
+          <div class="progressbar" style="margin-top:6px;"><div style="width:60%;"></div></div>
+        </div>
+
+        <div class="card">
+          <div class="card-title">2. Tambahkan sayur di makan utama</div>
+          <p class="card-sub"><b>Kenapa:</b> Sayur jarang tercatat dalam recall.</p>
+          <p class="card-sub"><b>Tindakan:</b> Tambah 1 porsi sayur di makan siang atau malam.</p>
+          <div class="progressbar" style="margin-top:8px;"><div style="width:30%;"></div></div>
+        </div>
+
+        <div class="card">
+          <div class="card-title">3. Kurangi minuman berpemanis</div>
+          <p class="card-sub"><b>Kenapa:</b> Muncul 4x dalam seminggu terakhir.</p>
+          <p class="card-sub"><b>Tindakan:</b> Ganti 2 dari 4 sesi dengan air putih/teh tawar.</p>
+          <div class="progressbar" style="margin-top:8px;"><div style="width:45%;"></div></div>
+        </div>
+      </div>
+    </div></div>
+    <div class="caption">Recommendation — Progres Mingguan</div>
+  </div>
+</section>
+
+<!-- ============ 10 HISTORY ============ -->
+<section class="section" id="s10">
+  <div class="section-head">
+    <div class="num">10 / Mahasiswa</div>
+    <h2>Student History</h2>
+    <p>Riwayat food recall, assessment, dan rekomendasi, disertai grafik tren sederhana.</p>
+  </div>
+  <div class="frames">
+    <div class="phone"><div class="notch"></div><div class="screen">
+      <div class="status-bar"><span>9:41</span><span>●●●  🔋</span></div>
+      <div class="scr-content scroll-y">
+        <div class="greet-lg">Riwayat Saya</div>
+        <div class="card">
+          <div class="card-title">Tren asupan energi (14 hari)</div>
+          <svg viewBox="0 0 260 90" width="100%" height="90" style="margin-top:8px;">
+            <polyline points="0,60 30,50 60,55 90,35 120,40 150,25 180,32 210,20 240,28" fill="none" stroke="#3D8A5E" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+            <polyline points="0,60 30,50 60,55 90,35 120,40 150,25 180,32 210,20 240,28" fill="url(#g1)" stroke="none" opacity="0.15"/>
+            <defs><linearGradient id="g1" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#3D8A5E"/><stop offset="100%" stop-color="#3D8A5E" stop-opacity="0"/></linearGradient></defs>
+          </svg>
+        </div>
+        <div class="card" style="display:flex;justify-content:space-between;align-items:center;">
+          <div><div class="card-title">Senin, 12 Agu</div><div class="card-sub">Food recall selesai · Assessment ✓</div></div>
+          <span class="pill pill-green">Baik</span>
+        </div>
+        <div class="card" style="display:flex;justify-content:space-between;align-items:center;">
+          <div><div class="card-title">Minggu, 11 Agu</div><div class="card-sub">Food recall selesai · Assessment ✓</div></div>
+          <span class="pill pill-amber">Perhatian</span>
+        </div>
+        <div class="card" style="display:flex;justify-content:space-between;align-items:center;">
+          <div><div class="card-title">Sabtu, 10 Agu</div><div class="card-sub">Food recall tidak lengkap</div></div>
+          <span class="pill pill-red">Belum lengkap</span>
+        </div>
+      </div>
+      <div class="bottomnav">
+        <div class="item"><div class="navicon">🏠</div>Home</div>
+        <div class="item"><div class="navicon">📝</div>Recall</div>
+        <div class="item"><div class="navicon">💡</div>Insight</div>
+        <div class="item active"><div class="navicon">📊</div>Riwayat</div>
+        <div class="item"><div class="navicon">👤</div>Profil</div>
+      </div>
+    </div></div>
+    <div class="caption">Student History</div>
+  </div>
+</section>
+
+<div style="height:24px;background:var(--green-900);"></div>
+
+<!-- ============ 11 DIETITIAN DASHBOARD ============ -->
+<section class="section" id="s11" style="max-width:1200px;">
+  <div class="section-head">
+    <div class="num">11 / Ahli Gizi · Desktop</div>
+    <h2>Dietitian Dashboard</h2>
+    <p>Gambaran populasi mahasiswa: siapa yang butuh perhatian dan masalah pola makan yang paling sering muncul.</p>
+  </div>
+  <div class="card" style="max-width:920px;padding:0;overflow:hidden;">
+    <div style="background:var(--green-900);color:#fff;padding:18px 24px;display:flex;justify-content:space-between;align-items:center;">
+      <div style="font-family:var(--font-display);font-weight:700;font-size:15px;">Nutrivia · Dashboard Ahli Gizi</div>
+      <div style="display:flex;gap:18px;font-size:11.5px;color:#CFE7D9;">
+        <span style="color:#fff;font-weight:700;">Dashboard</span><span>Mahasiswa</span><span>Assessment</span><span>Monitoring</span><span>Knowledge Base</span>
+      </div>
+      <div class="avatar" style="width:30px;height:30px;font-size:11px;">SG</div>
+    </div>
+    <div style="padding:22px 24px;">
+      <div style="display:flex;gap:14px;">
+        <div class="kpi" style="flex:1;padding:16px;"><div class="v" style="font-size:24px;">250</div><div class="l">Total mahasiswa</div></div>
+        <div class="kpi" style="flex:1;padding:16px;"><div class="v" style="font-size:24px;color:var(--green-600);">187</div><div class="l">Assessment selesai</div></div>
+        <div class="kpi" style="flex:1;padding:16px;border-color:var(--red);"><div class="v" style="font-size:24px;color:var(--red);">42</div><div class="l">Perlu perhatian</div></div>
+      </div>
+      <div style="display:flex;gap:16px;margin-top:16px;">
+        <div class="card" style="flex:1.3;">
+          <div class="card-title">Masalah pola makan paling sering</div>
+          <div style="display:flex;flex-direction:column;gap:10px;margin-top:10px;">
+            <div><div style="display:flex;justify-content:space-between;font-size:11.5px;font-weight:600;"><span>Meal skipping</span><span>68%</span></div><div class="progressbar" style="margin-top:5px;"><div style="width:68%;background:var(--red);"></div></div></div>
+            <div><div style="display:flex;justify-content:space-between;font-size:11.5px;font-weight:600;"><span>Konsumsi sayur rendah</span><span>57%</span></div><div class="progressbar" style="margin-top:5px;"><div style="width:57%;background:var(--amber);"></div></div></div>
+            <div><div style="display:flex;justify-content:space-between;font-size:11.5px;font-weight:600;"><span>Minuman manis tinggi</span><span>61%</span></div><div class="progressbar" style="margin-top:5px;"><div style="width:61%;background:var(--amber);"></div></div></div>
+          </div>
+        </div>
+        <div class="card" style="flex:1;">
+          <div class="card-title">Mahasiswa perlu perhatian</div>
+          <div style="display:flex;flex-direction:column;gap:8px;margin-top:8px;">
+            <div style="display:flex;justify-content:space-between;align-items:center;"><span style="font-size:11.5px;font-weight:600;">Rina Kusuma</span><span class="pill pill-red">Rendah sayur</span></div>
+            <div style="display:flex;justify-content:space-between;align-items:center;"><span style="font-size:11.5px;font-weight:600;">Budi Santoso</span><span class="pill pill-amber">Skip meal</span></div>
+            <div style="display:flex;justify-content:space-between;align-items:center;"><span style="font-size:11.5px;font-weight:600;">Andi Pratama</span><span class="pill pill-amber">Skip meal</span></div>
+          </div>
+          <button class="btn btn-secondary btn-block" style="margin-top:10px;">Lihat semua →</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="caption" style="text-align:left;max-width:920px;">Dietitian Dashboard — Desktop</div>
+</section>
+
+<!-- ============ 12 STUDENT DETAIL ============ -->
+<section class="section" id="s12">
+  <div class="section-head">
+    <div class="num">12 / Ahli Gizi · Desktop</div>
+    <h2>Student Detail</h2>
+    <p>Data mahasiswa lengkap: overview, food recall timeline, assessment, dan riwayat monitoring.</p>
+  </div>
+  <div class="card" style="max-width:920px;padding:0;overflow:hidden;">
+    <div style="padding:20px 24px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;">
+      <div style="display:flex;gap:14px;align-items:center;">
+        <div class="avatar" style="width:46px;height:46px;font-size:16px;">AP</div>
+        <div>
+          <div style="font-family:var(--font-display);font-weight:700;font-size:15px;">Andi Pratama</div>
+          <div style="font-size:11.5px;color:var(--ink-500);">21 th · Laki-laki · Assessment terakhir: 12 Agu 2026</div>
+        </div>
+      </div>
+      <span class="pill pill-amber">Perlu perhatian</span>
+    </div>
+    <div style="display:flex;gap:8px;padding:14px 24px 0;font-size:11px;font-weight:700;color:var(--ink-500);">
+      <span style="color:var(--green-700);border-bottom:2px solid var(--green-600);padding-bottom:8px;">Overview</span>
+      <span style="padding-bottom:8px;">Food Recall</span>
+      <span style="padding-bottom:8px;">Assessment</span>
+      <span style="padding-bottom:8px;">Eating Behavior</span>
+      <span style="padding-bottom:8px;">Rekomendasi</span>
+      <span style="padding-bottom:8px;">Expert Review</span>
+      <span style="padding-bottom:8px;">Monitoring</span>
+    </div>
+    <div style="padding:20px 24px;display:flex;gap:16px;">
+      <div style="flex:1;display:flex;flex-direction:column;gap:12px;">
+        <div class="card">
+          <div class="card-title">Food recall — timeline terakhir</div>
+          <div style="display:flex;flex-direction:column;gap:10px;margin-top:8px;">
+            <div style="display:flex;gap:10px;align-items:center;"><span style="font-size:10.5px;color:var(--ink-500);width:40px;">08:00</span><div class="food-row" style="font-weight:500;font-size:11.5px;">🍚 Nasi · 🍗 Ayam goreng</div></div>
+            <div style="display:flex;gap:10px;align-items:center;"><span style="font-size:10.5px;color:var(--ink-500);width:40px;">12:30</span><div class="food-row" style="font-weight:500;font-size:11.5px;">🍚 Nasi · 🥬 Sayur bayam</div></div>
+            <div style="display:flex;gap:10px;align-items:center;"><span style="font-size:10.5px;color:var(--ink-500);width:40px;">16:00</span><div class="food-row" style="font-weight:500;font-size:11.5px;">🧋 Es teh manis</div></div>
+            <div style="display:flex;gap:10px;align-items:center;"><span style="font-size:10.5px;color:var(--red);width:40px;">19:30</span><div class="food-row" style="font-weight:500;font-size:11.5px;color:var(--ink-500);">Tidak tercatat — "lewatkan"</div></div>
+          </div>
+        </div>
+      </div>
+      <div style="width:280px;display:flex;flex-direction:column;gap:12px;">
+        <div class="card">
+          <div class="card-title">Nutrition Assessment</div>
+          <div style="display:flex;flex-direction:column;gap:6px;margin-top:6px;">
+            <div style="display:flex;justify-content:space-between;font-size:11px;"><span>Antropometri</span><span class="pill pill-green">Normal</span></div>
+            <div style="display:flex;justify-content:space-between;font-size:11px;"><span>Energi</span><span class="pill pill-amber">Perhatian</span></div>
+            <div style="display:flex;justify-content:space-between;font-size:11px;"><span>Sayur</span><span class="pill pill-red">Rendah</span></div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-title">Eating Behavior</div>
+          <p class="card-sub">Meal skipping terdeteksi 3x/minggu, dominan makan malam.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="caption" style="text-align:left;max-width:920px;">Student Detail — Ahli Gizi</div>
+</section>
+
+<!-- ============ 13 EXPERT REVIEW ============ -->
+<section class="section" id="s13">
+  <div class="section-head">
+    <div class="num">13 / Ahli Gizi · Desktop</div>
+    <h2>Expert Review</h2>
+    <p>Fitur inti: sistem menyajikan assessment &amp; rekomendasi awal, ahli gizi menyetujui, mengedit, atau menolak — keputusan akhir jelas berada di tangan ahli gizi.</p>
+  </div>
+  <div class="card" style="max-width:920px;">
+    <div style="display:flex;justify-content:space-between;align-items:center;">
+      <div class="card-title" style="font-size:14px;">System Assessment &amp; Recommendation</div>
+      <span class="pill pill-amber">Menunggu review</span>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:8px;margin-top:12px;">
+      <div style="display:flex;gap:8px;align-items:center;font-size:12px;font-weight:600;"><span style="color:var(--amber);">⚠️</span> Energy intake needs attention</div>
+      <div style="display:flex;gap:8px;align-items:center;font-size:12px;font-weight:600;"><span style="color:var(--red);">⚠️</span> Meal skipping detected — 3x/minggu</div>
+      <div style="display:flex;gap:8px;align-items:center;font-size:12px;font-weight:600;"><span style="color:var(--amber);">⚠️</span> Sugary drink frequency high</div>
+    </div>
+    <hr class="line" style="margin:16px 0;">
+    <div class="card-title" style="font-size:13px;">System Recommendation</div>
+    <ul style="margin:8px 0 0;padding-left:18px;font-size:12px;color:var(--ink-700);line-height:1.9;">
+      <li>Improve breakfast consistency</li>
+      <li>Reduce sugary drink frequency</li>
+      <li>Increase vegetable intake</li>
+    </ul>
+    <hr class="line" style="margin:16px 0;">
+    <div class="card-title" style="font-size:13px;">Catatan Ahli Gizi</div>
+    <div class="input" style="height:64px;align-items:flex-start;color:var(--ink-300);margin-top:6px;">Tambahkan catatan klinis atau konteks tambahan di sini...</div>
+    <div style="display:flex;gap:8px;margin-top:14px;">
+      <button class="btn btn-primary" style="flex:1;">✓ Approve</button>
+      <button class="btn btn-secondary" style="flex:1;">✎ Edit</button>
+      <button class="btn btn-ghost" style="flex:1;">Reject</button>
+    </div>
+    <button class="btn btn-ghost btn-block" style="margin-top:8px;">＋ Add Recommendation</button>
+    <div style="margin-top:16px;background:var(--green-100);border-radius:var(--radius-sm);padding:12px 14px;display:flex;gap:10px;align-items:flex-start;">
+      <span style="font-size:15px;">🔒</span>
+      <div style="font-size:11px;color:var(--green-900);line-height:1.5;"><b>Final Recommendation</b> hanya aktif setelah disetujui ahli gizi. Sistem hanya menyediakan draf awal — keputusan akhir selalu berada di tangan ahli gizi.</div>
+    </div>
+  </div>
+  <div class="caption" style="text-align:left;max-width:920px;">Expert Review — Approve / Edit / Reject</div>
+</section>
+
+<!-- ============ 14 KNOWLEDGE BASE ============ -->
+<section class="section" id="s14">
+  <div class="section-head">
+    <div class="num">14 / Ahli Gizi · Desktop</div>
+    <h2>Knowledge Base / Rule Management</h2>
+    <p>Ahli gizi mengelola aturan penilaian tanpa perlu coding — tabel rule sederhana dan dapat diedit.</p>
+  </div>
+  <div class="card" style="max-width:920px;padding:0;overflow:hidden;">
+    <div style="padding:16px 22px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;">
+      <div class="card-title" style="font-size:14px;">Rule Table — Eating Behavior</div>
+      <button class="btn btn-primary" style="padding:9px 14px;">＋ Tambah Rule</button>
+    </div>
+    <table class="rule-table" style="padding:0 22px;">
+      <tr>
+        <th style="padding-left:22px;">Parameter</th><th>Kondisi</th><th>Interpretasi</th><th>Rekomendasi</th><th style="padding-right:22px;">Referensi</th>
+      </tr>
+      <tr>
+        <td style="padding-left:22px;font-weight:600;">Breakfast Frequency</td><td>&lt; 3x/minggu</td><td><span class="pill pill-red" style="font-size:9.5px;">Rendah</span></td><td>Edukasi sarapan</td><td style="padding-right:22px;color:var(--green-600);">📄 Lihat</td>
+      </tr>
+      <tr>
+        <td style="padding-left:22px;font-weight:600;">Vegetable Intake</td><td>&lt; 3 porsi/hari</td><td><span class="pill pill-amber" style="font-size:9.5px;">Perhatian</span></td><td>Tambah porsi sayur</td><td style="padding-right:22px;color:var(--green-600);">📄 Lihat</td>
+      </tr>
+      <tr>
+        <td style="padding-left:22px;font-weight:600;">Sugary Drink Freq.</td><td>&gt; 3x/minggu</td><td><span class="pill pill-red" style="font-size:9.5px;">Tinggi</span></td><td>Kurangi frekuensi</td><td style="padding-right:22px;color:var(--green-600);">📄 Lihat</td>
+      </tr>
+      <tr>
+        <td style="padding-left:22px;font-weight:600;">Meal Skipping</td><td>≥ 2x/minggu</td><td><span class="pill pill-amber" style="font-size:9.5px;">Perhatian</span></td><td>Atur jadwal makan</td><td style="padding-right:22px;color:var(--green-600);">📄 Lihat</td>
+      </tr>
+    </table>
+    <div style="padding:16px 22px;">
+      <div class="card" style="background:var(--sand-100);">
+        <div class="card-title">Edit Rule — Breakfast Frequency</div>
+        <div style="display:flex;gap:10px;margin-top:10px;">
+          <div style="flex:1;"><div style="font-size:10.5px;color:var(--ink-500);font-weight:600;margin-bottom:4px;">Condition</div><div class="input">&lt; 3 times / week</div></div>
+          <div style="flex:1;"><div style="font-size:10.5px;color:var(--ink-500);font-weight:600;margin-bottom:4px;">Recommendation</div><div class="input">Provide breakfast education</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="caption" style="text-align:left;max-width:920px;">Knowledge Base — No-Code Rule Management</div>
+</section>
+
+<!-- ============ 15 MONITORING ============ -->
+<section class="section" id="s15">
+  <div class="section-head">
+    <div class="num">15 / Ahli Gizi · Desktop</div>
+    <h2>Monitoring</h2>
+    <p>Perubahan pola makan mahasiswa dari waktu ke waktu, ditampilkan sebagai grafik sederhana.</p>
+  </div>
+  <div class="card" style="max-width:920px;">
+    <div style="display:flex;justify-content:space-between;align-items:center;">
+      <div class="card-title" style="font-size:14px;">Andi Pratama — Monitoring 8 Minggu</div>
+      <span class="pill pill-amber">Status: Perhatian</span>
+    </div>
+    <div style="display:flex;gap:16px;margin-top:16px;">
+      <div style="flex:1;">
+        <div style="font-size:11px;color:var(--ink-500);font-weight:600;margin-bottom:6px;">Frekuensi sarapan / minggu</div>
+        <svg viewBox="0 0 260 80" width="100%" height="80">
+          <polyline points="0,60 33,55 66,40 99,45 132,30 165,35 198,20 231,25" fill="none" stroke="#3D8A5E" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div style="flex:1;">
+        <div style="font-size:11px;color:var(--ink-500);font-weight:600;margin-bottom:6px;">Konsumsi sayur / minggu</div>
+        <svg viewBox="0 0 260 80" width="100%" height="80">
+          <polyline points="0,50 33,55 66,45 99,60 132,50 165,58 198,48 231,52" fill="none" stroke="#E3A23A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div style="flex:1;">
+        <div style="font-size:11px;color:var(--ink-500);font-weight:600;margin-bottom:6px;">Minuman manis / minggu</div>
+        <svg viewBox="0 0 260 80" width="100%" height="80">
+          <rect x="4" y="45" width="20" height="30" rx="4" fill="#D4645A"/><rect x="34" y="35" width="20" height="40" rx="4" fill="#D4645A"/><rect x="64" y="50" width="20" height="25" rx="4" fill="#E3A23A"/><rect x="94" y="30" width="20" height="45" rx="4" fill="#D4645A"/><rect x="124" y="55" width="20" height="20" rx="4" fill="#3D8A5E"/><rect x="154" y="40" width="20" height="35" rx="4" fill="#E3A23A"/><rect x="184" y="60" width="20" height="15" rx="4" fill="#3D8A5E"/><rect x="214" y="48" width="20" height="27" rx="4" fill="#E3A23A"/>
+        </svg>
+      </div>
+    </div>
+    <hr class="line" style="margin:18px 0;">
+    <div style="display:flex;gap:10px;flex-wrap:wrap;">
+      <span class="pill pill-green">Meal skipping ↓ membaik</span>
+      <span class="pill pill-amber">Sayur stagnan</span>
+      <span class="pill pill-amber">Status rekomendasi: 2 aktif</span>
+    </div>
+  </div>
+  <div class="caption" style="text-align:left;max-width:920px;">Monitoring — Tren Perubahan Pola Makan</div>
+</section>
+
+<footer class="credit">
+  Nutrivia UI/UX Concept · Rule-based nutrition assessment system · Ahli gizi tetap sebagai pengambil keputusan akhir
+</footer>
+
+</body>
+</html>
